@@ -1,6 +1,11 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
 }
 
 .shelf {
@@ -23,13 +28,62 @@ ul {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  height: 3rem;
-  width: 3rem;
+  height: 4rem;
+  width: 4rem;
   border-radius: 50%;
   border: none;
-  font-size: 2rem;
-  font-weight: 900;
-  display: flex;
-  justify-content: center;
-  align-content: center;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.modal {
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+form {
+	display:grid;
+	justify-items: center;
+	align-content: center;
+	grid-template-columns: 1fr;
+}
+
+.form-input {
+	position: relative;
+  margin-top: 3rem;
+}
+
+input {
+	height: 4.5rem;
+	width: 25ch;
+  padding-top: 2rem;
+  padding-left: 0.7rem;
+  font-size: 1.6rem;
+  border: none;
+  border-bottom: 1px solid rgb(142, 132, 117);
+}
+
+label {
+	position: absolute;
+	transition: all 0.3s ease-in-out;
+  color: rgb(142, 132, 117);
+	font-size: 2rem;
+  left: 0.8rem;
+  top: 1rem;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label {
+  top: 0.5rem;
+	font-size: 1.4rem;
+}
+
+input:focus {
+  outline: none;
 }
