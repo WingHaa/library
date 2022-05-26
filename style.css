@@ -24,7 +24,7 @@ ul {
   margin-bottom: 16px;
 }
 
-.add  {
+.add {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
@@ -37,53 +37,169 @@ ul {
 }
 
 .modal {
-	position: fixed;
-	z-index: 1;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	display: flex;
-	justify-content: center;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 form {
-	display:grid;
-	justify-items: center;
-	align-content: center;
-	grid-template-columns: 1fr;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  grid-template-columns: 1fr;
 }
 
 .form-input {
-	position: relative;
+  position: relative;
   margin-top: 3rem;
 }
 
 input {
-	height: 4.5rem;
-	width: 25ch;
+  height: 4.5rem;
+  width: 25ch;
   padding-top: 2rem;
   padding-left: 0.7rem;
   font-size: 1.6rem;
   border: none;
-  border-bottom: 1px solid rgb(142, 132, 117);
+  border-bottom: 1px solid #a9a9a9
 }
 
 label {
-	position: absolute;
-	transition: all 0.3s ease-in-out;
-  color: rgb(142, 132, 117);
-	font-size: 2rem;
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+  color: #a9a9a9;
+  font-size: 2rem;
   left: 0.8rem;
   top: 1rem;
 }
 
-input:focus + label,
-input:not(:placeholder-shown) + label {
+input:focus+label,
+input:not(:placeholder-shown)+label {
   top: 0.5rem;
-	font-size: 1.4rem;
+  font-size: 1.4rem;
 }
 
 input:focus {
   outline: none;
+}
+
+input:focus:valid,
+input:valid:not(:placeholder-shown) {
+  border-bottom: 1px solid green;
+}
+
+input:focus:invalid {
+  border-bottom: 1px solid red;
+}
+
+input:valid:not(:placeholder-shown)+label {
+  color: green;
+}
+
+input:invalid:not(:placeholder-shown)+label {
+  color: red;
+}
+
+input:invalid:not(:placeholder-shown)+label+span::before {
+  content: "*Must be a value between 1 - 10000";
+  color: red;
+  position: absolute;
+  left: 0.5rem;
+  top: 5.3rem;
+  font-size: 1.3rem;
+}
+
+input:valid {
+  color: green;
+}
+
+input:invalid {
+  color: red;
+}
+
+.read {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle,
+.toggle:before,
+.slot__label,
+.curtain {
+  transition-property: background-color, transform, visibility;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in, cubic-bezier(0.6, 0.2, 0.4, 1.5), linear;
+}
+
+.toggle:before,
+.slot,
+.slot__label {
+  display: block;
+  position: relative;
+}
+
+.toggle:before,
+.curtain {
+  position: absolute;
+}
+
+.toggle:checked {
+  background-color: #2b7f3a;
+}
+
+.toggle:focus {
+  outline: transparent;
+}
+
+/* sizing button border */
+.toggle {
+  border-radius: 0.75em;
+  box-shadow: 0 0 0 0.1em inset;
+  cursor: pointer;
+  position: relative;
+  margin-right: 0.25em;
+  width: 3em;
+  height: 1.5em;
+  appearance: none;
+}
+
+/* making the slider */
+.toggle:before {
+  background: currentColor;
+  border-radius: 50%;
+  content: "";
+  top: 0.2em;
+  left: 0.2em;
+  width: 1.1em;
+  height: 1.1em;
+}
+
+/* make label 3D */
+.toggle:checked:before {
+  transform: translateX(1.5em);
+}
+
+.toggle:checked~.slot .slot__label,
+.slot__label:nth-child(2) {
+  transform: translateY(-50%) scaleY(0);
+}
+
+.toggle:checked~.slot .slot__label:nth-child(2) {
+  transform: translateY(-100%) scaleY(1);
+}
+
+.slot {
+  color: transparent;
+  font-size: 1.5em;
+  font-weight: bold;
+  line-height: 1;
+  overflow: hidden;
+  height: 1em;
+  color: #fff
 }

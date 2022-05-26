@@ -14,16 +14,24 @@
   <div class="modal">
     <form>
       <div class="form-input">
-        <input id="title" type="text" placeholder=" ">
+        <input id="title" type="text" placeholder=" " required>
         <label for="title">Title</label>
       </div>
       <div class="form-input">
-        <input id="author" type="text" placeholder=" ">
+        <input id="author" type="text" placeholder=" " required>
         <label for="author">Author</label>
       </div>
       <div class="form-input">
-        <input id="pages" type="text" placeholder=" ">
+        <input id="pages" type="number" min="1" max ="10000" placeholder=" " required>
         <label for="pages">Pages</label>
+				<span></span>
+      </div>
+      <div class="read">
+        <input id="toggle" class="toggle" type="checkbox" role="switch" name="toggle" value="read">
+        <label for="toggle" class="slot">
+          <span class="slot__label">Already Read</span>
+          <span class="slot__label">Haven't Read</span>
+        </label>
       </div>
     </form>
   </div>
