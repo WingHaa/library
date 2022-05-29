@@ -2,6 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  --valid-border: #22c61d;
+  --invalid-border: #ff0000;
+  --unread-bg: #f3df7c;
+  --read-bg: #77e3ca;
+  --input-bg: hsl(242, 80%, 88%);
+  --header-text-color: #070f20;
+  --book-text-size: 2.4rem;
+  --book-height: 39.5rem; 
 }
 
 html {
@@ -10,18 +18,69 @@ html {
 
 .shelf {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(50ch, 1fr));
+  gap: 1rem;
+  padding: 2rem;
 }
 
-ul {
+.book {
+  border: 1px solid #000;
+  border-radius: 1rem;
+  font-size: var(--book-text-size);
+  padding: 1rem;
+  height: var(--book-height);
+}
+
+.book ul {
+  gap: 3rem;
   list-style: none;
+  display: grid;
+  grid-template-rows: 18rem 1fr 1fr 1fr;
+  --lh: 3.0rem;
+  line-height: var(--lh);
+}
+
+.book ul li:first-child {
+  position: relative;
+  overflow: hidden;
+  --max-lines: 6;
+  max-height: calc(var(--lh) * var(--max-lines));
+  padding-right: 1rem;
+}
+
+.book ul li:first-child::before {
+  position: absolute;
+  content: "...";
+  inset-block-end: 0;
+  inset-inline-end: 0;
+}
+
+.book ul li:first-child:after {
+  content: "";
+  position: absolute;
+  inset-inline-end: 0;
+  /* "right" */
+  width: 1rem;
+  height: 1rem;
+  background: white;
+}
+
+.book ul li:last-child {
+  justify-self: center;
+}
+
+.edit {
+  padding: 0.5rem 1rem;
 }
 
 .header {
   text-align: center;
   padding: 16px;
-  border: 1px solid;
   margin-bottom: 16px;
+  background-color: rgb(237, 219, 121);
+  font-weight: bold;
+  color: var(--header-text-color);
+  font-size: 2.8rem;
 }
 
 .add {
@@ -37,26 +96,32 @@ ul {
 }
 
 .modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 form {
+  position: relative;
   display: grid;
   justify-items: center;
   align-content: center;
-  grid-template-columns: 1fr;
+  gap: 3rem;
+  height: fit-content;
+  background: var(--input-bg);
+  padding: 4rem 2rem 2rem;
+  border-radius: 1rem;
+  height: var(--book-height);
 }
 
-.form-input {
+.modal .form-input {
   position: relative;
-  margin-top: 3rem;
 }
 
 input {
@@ -64,74 +129,76 @@ input {
   width: 25ch;
   padding-top: 2rem;
   padding-left: 0.7rem;
-  font-size: 1.6rem;
+  font-size: var(--book-text-size);
   border: none;
   border-bottom: 1px solid #a9a9a9
 }
 
-label {
+.modal .form-input label {
   position: absolute;
   transition: all 0.3s ease-in-out;
   color: #a9a9a9;
-  font-size: 2rem;
-  left: 0.8rem;
-  top: 1rem;
+  font-size: 2.5rem;
+  left: 1rem;
+  transform: translateY(25%);
 }
 
-input:focus+label,
-input:not(:placeholder-shown)+label {
-  top: 0.5rem;
+.modal .form-input input:focus+label,
+.modal .form-input input:not(:placeholder-shown)+label {
+  top: 0.1rem;
   font-size: 1.4rem;
 }
 
-input:focus {
+.modal .form-input input:focus {
   outline: none;
 }
 
-input:focus:valid,
-input:valid:not(:placeholder-shown) {
-  border-bottom: 1px solid green;
+.modal .form-input input:focus:valid,
+.modal .form-input input:valid:not(:placeholder-shown) {
+  border: 1px solid var(--valid-border);
 }
 
-input:focus:invalid {
-  border-bottom: 1px solid red;
+.modal .form-input input:focus:invalid {
+  border: 1px solid var(--invalid-border);
 }
 
-input:valid:not(:placeholder-shown)+label {
-  color: green;
+.modal .form-input input:valid:not(:placeholder-shown)+label {
+  color: var(--valid-border);
 }
 
-input:invalid:not(:placeholder-shown)+label {
-  color: red;
+.modal .form-input input:invalid:not(:placeholder-shown)+label {
+  color: var(--invalid-border);
 }
 
-input:invalid:not(:placeholder-shown)+label+span::before {
+.modal .form-input input:invalid:not(:placeholder-shown)+label+span::before {
   content: "*Must be a value between 1 - 10000";
-  color: red;
+  color: var(--invalid-border);
   position: absolute;
   left: 0.5rem;
-  top: 5.3rem;
+  top: 4.3rem;
   font-size: 1.3rem;
 }
 
-input:valid {
-  color: green;
+.modal .form-input input:valid {
+  color: var(--valid-border);
 }
 
-input:invalid {
-  color: red;
+.modal .form-input input:invalid {
+  color: var(--invalid-border);
 }
 
 .read {
   display: flex;
   justify-content: center;
-  align-items: center;
+}
+
+.toggle {
+  background: var(--invalid-border);
 }
 
 .toggle,
 .toggle:before,
-.slot__label,
-.curtain {
+.slot-label {
   transition-property: background-color, transform, visibility;
   transition-duration: 0.25s;
   transition-timing-function: ease-in, cubic-bezier(0.6, 0.2, 0.4, 1.5), linear;
@@ -139,18 +206,17 @@ input:invalid {
 
 .toggle:before,
 .slot,
-.slot__label {
+.slot-label {
   display: block;
-  position: relative;
 }
 
-.toggle:before,
-.curtain {
+.toggle:before {
   position: absolute;
+  color: #fff;
 }
 
 .toggle:checked {
-  background-color: #2b7f3a;
+  background-color: var(--valid-border);
 }
 
 .toggle:focus {
@@ -185,21 +251,41 @@ input:invalid {
   transform: translateX(1.5em);
 }
 
-.toggle:checked~.slot .slot__label,
-.slot__label:nth-child(2) {
+.toggle:checked~.slot .slot-label,
+.slot-label:nth-child(2) {
   transform: translateY(-50%) scaleY(0);
 }
 
-.toggle:checked~.slot .slot__label:nth-child(2) {
+.toggle:checked~.slot .slot-label:nth-child(2) {
   transform: translateY(-100%) scaleY(1);
 }
 
-.slot {
+.modal .read .slot {
   color: transparent;
-  font-size: 1.5em;
+  font-size: var(--book-text-size);
+  line-height: 1.5;
   font-weight: bold;
-  line-height: 1;
-  overflow: hidden;
   height: 1em;
   color: #fff
+}
+
+#toggle {
+  border: inherit;
+  color: #fff;
+}
+
+.slot-label {
+  color: #000;
+}
+
+.exit {
+  position: absolute;
+  top: 1rem;
+  right: 2.5rem;
+  padding: 0.25rem 0.7rem;
+}
+
+.submit {
+  padding: 1rem;
+  font-weight: bold;
 }
