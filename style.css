@@ -18,7 +18,7 @@ html {
 
 .shelf {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50ch, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(50ch, 1fr));
   gap: 1rem;
   padding: 2rem;
 }
@@ -187,44 +187,44 @@ input {
   color: var(--invalid-border);
 }
 
-.read {
+.toggle {
   display: flex;
   justify-content: center;
 }
 
-.toggle {
+.read {
   background: var(--invalid-border);
 }
 
-.toggle,
-.toggle:before,
+.read,
+.read:before,
 .slot-label {
   transition-property: background-color, transform, visibility;
   transition-duration: 0.25s;
   transition-timing-function: ease-in, cubic-bezier(0.6, 0.2, 0.4, 1.5), linear;
 }
 
-.toggle:before,
+.read:before,
 .slot,
 .slot-label {
   display: block;
 }
 
-.toggle:before {
+.read:before {
   position: absolute;
   color: #fff;
 }
 
-.toggle:checked {
+.read:checked {
   background-color: var(--valid-border);
 }
 
-.toggle:focus {
+.read:focus {
   outline: transparent;
 }
 
 /* sizing button border */
-.toggle {
+.read {
   border-radius: 0.75em;
   box-shadow: 0 0 0 0.1em inset;
   cursor: pointer;
@@ -236,7 +236,7 @@ input {
 }
 
 /* making the slider */
-.toggle:before {
+.read:before {
   background: currentColor;
   border-radius: 50%;
   content: "";
@@ -247,20 +247,20 @@ input {
 }
 
 /* make label 3D */
-.toggle:checked:before {
+.read:checked:before {
   transform: translateX(1.5em);
 }
 
-.toggle:checked~.slot .slot-label,
+.read:checked~.slot .slot-label,
 .slot-label:nth-child(2) {
   transform: translateY(-50%) scaleY(0);
 }
 
-.toggle:checked~.slot .slot-label:nth-child(2) {
+.read:checked~.slot .slot-label:nth-child(2) {
   transform: translateY(-100%) scaleY(1);
 }
 
-.modal .read .slot {
+.modal .toggle .slot {
   color: transparent;
   font-size: var(--book-text-size);
   line-height: 1.5;
@@ -269,7 +269,7 @@ input {
   color: #fff
 }
 
-#toggle {
+#read {
   border: inherit;
   color: #fff;
 }

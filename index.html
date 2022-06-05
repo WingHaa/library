@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Document</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
@@ -15,21 +14,21 @@
   <div class="modal">
     <form>
       <div class="form-input">
-        <input id="title" type="text" placeholder=" " required>
+        <input id="title" name="title" type="text" placeholder=" " required>
         <label for="title">Title</label>
       </div>
       <div class="form-input">
-        <input id="author" type="text" placeholder=" " required>
+        <input id="author" name="author" type="text" placeholder=" " required>
         <label for="author">Author</label>
       </div>
       <div class="form-input">
-        <input id="pages" type="number" min="1" max="10000" placeholder=" " required>
+        <input id="pages" name="pages" type="number" min="1" max="10000" placeholder=" " required>
         <label for="pages">Pages</label>
         <span></span>
       </div>
-      <div class="read">
-        <input id="toggle" class="toggle" type="checkbox" role="switch" name="toggle" value="read">
-        <label for="toggle" class="slot">
+      <div class="toggle">
+        <input id="read" class="read" type="checkbox" role="switch" name="read" value="true">
+        <label for="read" class="slot">
           <span class="slot-label">Haven't Read</span>
           <span class="slot-label">Already Read</span>
         </label>
@@ -39,68 +38,7 @@
     </form>
   </div>
   <div class="header">Library</div>
-  <div class="shelf">
-    <div class="book">
-      <ul>
-        <li>転生して田舎でスローライフをおくりたい 貴族たちのお遊び</li>
-        <li>錬金王</li>
-        <li>358</li>
-        <li>
-          <button class="edit">Edit</button>
-        </li>
-      </ul>
-    </div>
-    <div class="book">
-      <ul>
-        <li>佐々木とピーちゃん ５ 裏切り、謀略、クーデター！ 異世界では王家の跡目争いが大決着 ～現代は待望の日常回、ただし、ハードモードの模様～【電子特典付き】</li>
-        <li>ぶんころり</li>
-        <li>442</li>
-        <li>
-          <button class="edit">Edit</button>
-        </li>
-      </ul>
-    </div>
-    <div class="book">
-      <ul>
-        <li>転生してハイエルフになりましたが、スローライフは１２０年で飽きました５</li>
-        <li>らる鳥 </li>
-        <li>400</li>
-        <li>
-          <button class="edit">Edit</button>
-        </li>
-      </ul>
-    </div>
-    <div class="book">
-      <ul>
-        <li>勇者、辞めます　～次の職場は魔王城～</li>
-        <li>クオンタム</li>
-        <li>353</li>
-        <li>
-          <button class="edit">Edit</button>
-        </li>
-      </ul>
-    </div>
-    <div class="book">
-      <ul>
-        <li>魔王の俺が奴隷エルフを嫁にしたんだが、どう愛でればいい？15</li>
-        <li>手島史詞</li>
-        <li>1000</li>
-        <li>
-          <button class="edit">Edit</button>
-        </li>
-      </ul>
-    </div>
-    <div class="book">
-      <ul>
-        <li>信者ゼロの女神サマと始める異世界攻略 9.太陽の勇者と水の精霊王</li>
-        <li>大崎アイル</li>
-        <li>357</li>
-        <li>
-          <button class="edit">Edit</button>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <div class="shelf"></div>
   <div class="footer"></div>
 </body>
 
