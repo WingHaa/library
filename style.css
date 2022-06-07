@@ -32,10 +32,9 @@ html {
 }
 
 .book ul {
-  gap: 3rem;
   list-style: none;
   display: grid;
-  grid-template-rows: 18rem 1fr 1fr 1fr;
+  grid-template-rows: 16rem 1fr 1fr 1fr;
   --lh: 3.0rem;
   line-height: var(--lh);
 }
@@ -69,7 +68,7 @@ html {
   justify-self: center;
 }
 
-.edit {
+.del {
   padding: 0.5rem 1rem;
 }
 
