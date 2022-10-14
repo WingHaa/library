@@ -1,20 +1,21 @@
 let myLibrary = [];
 
-function Book(id, title, author, pages, read) {
-  this.id = id;
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Book {
+  constructor(id, title, author, pages, read) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+  toggleRead() {
+    this.read = !this.read;
+    saveToLocalStorage(myLibrary);
+  }
 }
 
 function addBookToLibrary(book) {
   return myLibrary.push(book);
-}
-
-Book.prototype.toggleRead = function () {
-  this.id = !this.id
-  saveToLocalStorage(myLibrary);
 }
 
 const addButton = document.querySelector('.add');
@@ -37,7 +38,7 @@ function createBook(e) {
   e.preventDefault();
   const formData = new FormData(e.target);
   let formProps = Object.fromEntries(formData);
-  if (formProps.read === 'true') 
+  if (formProps.read === 'true')
     formProps.read = true;
   else formProps.read = false;
   formProps.id = 1;
@@ -71,7 +72,7 @@ function showBookCard(library) {
     title.textContent = book.title;
     author.textContent = `By: ${book.author}`;
     pages.textContent = `Pages: ${book.pages}`;
-    toggle.innerHTML = 
+    toggle.innerHTML =
       `<div class="toggle">
         <input id="read" class="read" type="checkbox" role="switch" name="read" value="true">
         <label for="read" class="slot">
@@ -109,7 +110,7 @@ function clearData() {
   localStorage.clear;
 }
 
-function saveToLocalStorage (object) {
+function saveToLocalStorage(object) {
   localStorage.setItem('library', JSON.stringify(myLibrary));
 }
 
@@ -126,7 +127,7 @@ function getLibrary() {
 
 function getBookId(e) {
   const bookId =
-    parseInt(e.target.parentNode.parentNode.parentNode.parentNode.dataset.id);
+    parseInt(e.target.parentNode.parentNode.parentNode.dataset.id);
   return myLibrary.findIndex((book) => {
     return book.id == bookId;
   });
